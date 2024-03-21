@@ -1,19 +1,19 @@
 import React from "react";
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-const navigation = [
-  { name: "Dashboard", href: "/", current: true },
-  { name: "Login", href: "/login", current: false },
-  { name: "Register", href: "/register", current: false },
-  { name: "products", href: "/products", current: false },
-];
+// const navigation = [
+//   { name: "Home", href: "/", current: true },
+//   { name: "Login", href: "/login", current: false },
+//   { name: "Register", href: "/register", current: false },
+//   { name: "products", href: "/products", current: false },
+// ];
 const Header = () => {
   return (
     <div>
@@ -36,13 +36,15 @@ const Header = () => {
                 </div>
                 <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                   <div className="flex flex-shrink-0 items-center">
-                    <img
-                      className="h-8 w-auto"
-                      src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                      alt="Your Company"
-                    />
+                    <Link to="/">
+                      <img
+                        className="h-8 w-auto"
+                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                        alt="Your Company"
+                      />
+                    </Link>
                   </div>
-                  <div className="hidden sm:ml-6 sm:block">
+                  {/* <div className="hidden sm:ml-6 sm:block">
                     <div className="flex space-x-4">
                       {navigation.map((item) => (
                         <Link
@@ -60,7 +62,7 @@ const Header = () => {
                         </Link>
                       ))}
                     </div>
-                  </div>
+                  </div> */}
                 </div>
                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                   {/* Profile dropdown */}
@@ -69,11 +71,7 @@ const Header = () => {
                       <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                         <span className="absolute -inset-1.5" />
                         <span className="sr-only">Open user menu</span>
-                        <img
-                          className="h-8 w-8 rounded-full"
-                          src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                          alt=""
-                        />
+                        <img className="h-8 w-8 rounded-full" src="" alt="" />
                       </Menu.Button>
                     </div>
                     <Transition
@@ -89,33 +87,59 @@ const Header = () => {
                         <Menu.Item>
                           {({ active }) => (
                             <Link
-                              to="#"
+                              to="/login"
                               className={classNames(
                                 active ? "bg-gray-100" : "",
                                 "block px-4 py-2 text-sm text-gray-700"
                               )}
                             >
-                              Your Profile
+                              Login
                             </Link>
                           )}
                         </Menu.Item>
                         <Menu.Item>
                           {({ active }) => (
                             <Link
-                              to="#"
+                              to="/products"
                               className={classNames(
                                 active ? "bg-gray-100" : "",
                                 "block px-4 py-2 text-sm text-gray-700"
                               )}
                             >
-                              Settings
+                              Products
                             </Link>
                           )}
                         </Menu.Item>
                         <Menu.Item>
                           {({ active }) => (
                             <Link
-                              to="#"
+                              to="/cart"
+                              className={classNames(
+                                active ? "bg-gray-100" : "",
+                                "block px-4 py-2 text-sm text-gray-700"
+                              )}
+                            >
+                              Cart
+                            </Link>
+                          )}
+                        </Menu.Item>
+                        <Menu.Item>
+                          {({ active }) => (
+                            <Link
+                              to="/profile"
+                              className={classNames(
+                                active ? "bg-gray-100" : "",
+                                "block px-4 py-2 text-sm text-gray-700"
+                              )}
+                            >
+                              Profile
+                            </Link>
+                          )}
+                        </Menu.Item>
+                        <Menu.Item>
+                          {({ active }) => (
+                            <Link
+                              to="/signout"
                               className={classNames(
                                 active ? "bg-gray-100" : "",
                                 "block px-4 py-2 text-sm text-gray-700"
@@ -132,7 +156,7 @@ const Header = () => {
               </div>
             </div>
 
-            <Disclosure.Panel className="sm:hidden">
+            {/* <Disclosure.Panel className="sm:hidden">
               <div className="space-y-1 px-2 pb-3 pt-2">
                 {navigation.map((item) => (
                   <Disclosure.Button
@@ -151,7 +175,7 @@ const Header = () => {
                   </Disclosure.Button>
                 ))}
               </div>
-            </Disclosure.Panel>
+            </Disclosure.Panel> */}
           </>
         )}
       </Disclosure>

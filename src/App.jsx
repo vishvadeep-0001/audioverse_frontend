@@ -5,6 +5,7 @@ import HomePage from "./components/Home/HomePage";
 import Login from "./components/Login/Login";
 import Product from "./components/Product/Product";
 import Register from "./components/Signup/Register";
+import Footer from "./components/Footer/Footer";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
         <Route path="/products" element={<Product />} />
         <Route path="/register" element={<Register />} />
       </Routes>
+      <Footer />
     </Router>
   );
 };
