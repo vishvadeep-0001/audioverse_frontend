@@ -1,6 +1,36 @@
 import React from "react";
+import {Link} from "react-router-dom"
 
-const url = "http://localhost:4000/api/v1/products";
+const products = [
+  {
+    id: 1,
+    name: 'Basic Tee',
+    href: "https://ecommerce-deploy-lft5.vercel.app/product/648c5a91f811f601eed66e6e",
+    imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg',
+    imageAlt: "Front of men's Basic Tee in black.",
+    price: '$35',
+    color: 'Black',
+  },
+  {
+    id: 2,
+    name: 'shirt',
+    href: '#',
+    imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg',
+    imageAlt: "Front of men's Basic Tee in black.",
+    price: '$35',
+    color: 'Black',
+  },
+  {
+    id: 3,
+    name: 'Pent Tee',
+    href: '#',
+    imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg',
+    imageAlt: "Front of men's Basic Tee in black.",
+    price: '$35',
+    color: 'Black',
+  },
+  
+]
 
 const Product = () => {
   return (
@@ -9,8 +39,9 @@ const Product = () => {
         <h2 className="sr-only">Products</h2>
 
         <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-          {url.map((product) => (
-            <a key={product.id} href={product.href} className="group">
+          
+          {products.map((product) => (
+            <Link key={product.id} to={product.href} className="group">
               <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
                 <img
                   src={product.imageSrc}
@@ -22,7 +53,7 @@ const Product = () => {
               <p className="mt-1 text-lg font-medium text-gray-900">
                 {product.price}
               </p>
-            </a>
+            </Link>
           ))}
         </div>
       </div>
