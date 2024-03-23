@@ -1,37 +1,41 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getAllProducts } from "./productApi";
+import { fetchAllProduct } from "./productApi";
 
 const initialState = {
   products: [],
   status: "idle",
-  error: null,
+  selectedProduct: null,
 };
 
-export const getAllProductsAsync = createAsyncThunk(
-  "product/getAllProduct",
-  async (userData) => {
-    const response = await createUser(userData);
+export const fetchAllProductAsync = createAsyncThunk(
+  "product/fetchAllProduct",
+  async () => {
+    const response = await fetchAllProduct();
+    // The value we return becomes the `fulfilled` action payload
     return response.data;
   }
 );
 
-export const authSlice = createSlice({
-  name: "user",
+export const productSlice = createSlice({
+  name: "product",
   initialState,
-  reducers: {},
+  reducers: {
+    clearSelectedProduct: (state) => {
+      state.selectedProduct = null;
+    },
+  },
   extraReducers: (builder) => {
     builder
-      .addCase(createUserAsync.pending, (state) => {
+      .addCase(fetchAllProductAsync.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(createUserAsync.fulfilled, (state, action) => {
+      .addCase(fetchAllProductAsync.fulfilled, (state, action) => {
         state.status = "idle";
-        state.loggedInUser = action.payload;
+        state.products = action.payload;
       });
   },
 });
 
-export const selectLoggedInUser = (state) => state.auth.loggedInUser;
-export const selectError = (state) => state.auth.error;
+export const selectAllProducts = (state) => state.product.products;
 
-export default authSlice.reducer;
+export default productSlice.reducer;
